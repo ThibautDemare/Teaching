@@ -1,0 +1,84 @@
+\documentclass[a4paper,12pt]{article}
+
+
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
+\setlength{\parskip}{10pt}
+
+%% Mandatory stuff
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Math package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}% Define a particular math font
+
+\begin{document}
+
+\begin{center}
+\Large{Licence L2\\Mathématiques pour l'informatique \\Correction d'un exercice du TD 3}
+\end{center}
+
+\section*{Exercice 21}
+
+1) Soit T un treillis, a et x deux éléments de T. Montrer que :
+$$ a \vee (x \wedge a) = a \text{ et } a \wedge (x \vee a) = a \text{ (propriété d'absoprtion)}$$
+
+Montrons que $a \vee (x \wedge a) = a$ :
+
+On sait que $a \leq a \vee (x \wedge a)$ et que $x \wedge a \leq a$. Donc $a \vee (x \wedge a) \leq a$
+
+Ainsi $a \vee (x \wedge a) = \text{max}(a, x \wedge a) = a $
+
+Montrons que $a \wedge (x \vee a) = a$ :
+
+On sait que $a \geq a \wedge (x \vee a)$ et que $x \vee a \geq a$. Donc $a \wedge (x \vee a) \geq a$
+
+Ainsi $a \wedge (x \vee a) = \text{min}(a, x \vee a) = a $
+
+2) $\forall x, y, z \in T$, montrer que :
+$$x \leq z \Rightarrow x \vee (y \wedge z) \leq (x \vee y) \wedge z$$
+Quand a-t-on l'égalité?
+
+D'une part $x \wedge z \leq z$ et $x \leq z$ donc $x \vee (y \wedge z) \leq z$ (a).
+
+D'autre part, $y \wedge z \leq y$ donc $x \vee (y \wedge z) \leq x \vee z$ (b).
+
+Ainsi, d'après (a) et (b), on en déduit que $x \vee (y \wedge z) \leq (x \vee y) \wedge z$
+
+3) Montrer les règles de distributivité "faibles" :
+
+$x \vee (y \wedge z) \leq (x \vee y) \wedge (x \vee z)$ (a)
+
+$(x \wedge y) \vee (x \wedge z) \leq x \wedge (y \vee z)$ (b)
+
+
+a) $y \wedge z \leq y$ et $y \wedge z \leq z$ donc $x \vee (y \wedge z) \leq x \vee y$ et $x \vee (y \wedge z) \leq x \vee z$
+
+Donc $x \vee (y \wedge z) \leq (x \vee y) \wedge (x \vee z)$
+
+b) $y \leq y \vee z$ et $z \leq y \vee z$ donc $x \wedge y \leq x \wedge (y \vee z)$ et $x \wedge z \leq x \wedge (y \vee z)$
+
+Donc $(x \wedge y) \vee (x \wedge z) \leq x \wedge (y \vee z)$
+
+4) Montrer que si 
+$$\forall x, y, z \in T, x \wedge (y \vee z) = (x \wedge y) \vee (x \wedge z)$$
+alors on :
+$$\forall x, y, z \in T, x \vee (y \wedge z) = (x \vee y) \wedge (x \vee z)$$
+
+Soit $(x \vee y) \wedge (x \vee z) = \text{ (D'après l'hypothèse) } ((x \vee y) \wedge x) \vee ((x \vee y) \wedge z)$
+
+D'après 1) et également d'après l'hypothèse, on a :
+
+$ = x \vee ((x \wedge z) \vee (y \wedge z))$
+
+Par association :
+
+$ = (x \vee (x \wedge z)) \vee (y \wedge z)$
+
+Encore d'après 1), on a :
+
+$ = x \vee (y \wedge z)$
+\end{document}
