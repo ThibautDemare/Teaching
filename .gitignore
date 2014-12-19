@@ -1,0 +1,16 @@
+*~
+*.aux
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.log
+*.out
+*.backup
+*.toc
+*.nav
+*.snm
+*.dvi
+*.synctex.gz
+*.lof
