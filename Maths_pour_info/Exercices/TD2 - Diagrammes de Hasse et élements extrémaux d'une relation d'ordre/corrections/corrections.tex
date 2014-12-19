@@ -1,0 +1,290 @@
+\documentclass[a4paper,12pt]{article}
+
+
+\usepackage[top=2.5cm, bottom=2.5cm, left=3cm, right=3cm]{geometry}
+\setlength{\parskip}{10pt}
+
+%% Mandatory stuff
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Math package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}% Define a particular math font
+
+%Advanced tabular managers
+\usepackage{array}
+\usepackage{multirow}
+
+% Improve itemize environment
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}% Delete useless space
+
+% Figure managers
+\usepackage{graphicx}
+\usepackage{float}
+
+%% Color package (for links, source code when using listings,...)
+\usepackage[usenames]{color}
+	%% Color for hyperlinks
+\definecolor{colHyperlinks}{RGB}{0,90,170}%{59,0,159}
+
+%
+% Define pseudo-code environment and its layout
+%
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\errorcontextlines\maxdimen
+
+% begin vertical rule patch for algorithmicx (http://tex.stackexchange.com/questions/144840/vertical-loop-block-lines-in-algorithmicx-with-noend-option)
+\makeatletter
+% start with some helper code
+% This is the vertical rule that is inserted
+\newcommand*{\algrule}[1][\algorithmicindent]{\makebox[#1][l]{\hspace*{.5em}\vrule height .75\baselineskip depth .25\baselineskip}}%
+
+\newcount\ALG@printindent@tempcnta
+\def\ALG@printindent{%
+    \ifnum \theALG@nested>0% is there anything to print
+        \ifx\ALG@text\ALG@x@notext% is this an end group without any text?
+            % do nothing
+            \addvspace{-3pt}% FUDGE for cases where no text is shown, to make the rules line up
+        \else
+            \unskip
+            % draw a rule for each indent level
+            \ALG@printindent@tempcnta=1
+            \loop
+                \algrule[\csname ALG@ind@\the\ALG@printindent@tempcnta\endcsname]%
+                \advance \ALG@printindent@tempcnta 1
+            \ifnum \ALG@printindent@tempcnta<\numexpr\theALG@nested+1\relax% can't do <=, so add one to RHS and use < instead
+            \repeat
+        \fi
+    \fi
+    }%
+\usepackage{etoolbox}
+% the following line injects our new indent handling code in place of the default spacing
+\patchcmd{\ALG@doentity}{\noindent\hskip\ALG@tlm}{\ALG@printindent}{}{\errmessage{failed to patch}}
+\makeatother
+% end vertical rule patch for algorithmicx
+
+% French translation of each keyword
+\algrenewcommand\algorithmicend{\textbf{Fin}}
+\algrenewcommand\algorithmicdo{\textbf{faire}}
+\algrenewcommand\algorithmicwhile{\textbf{Tant que}}
+\algrenewcommand\algorithmicfor{\textbf{Pour}}
+\algrenewcommand\algorithmicforall{\textbf{Pour chaque}}
+\algrenewcommand\algorithmicloop{\textbf{Boucler}}
+\algrenewcommand\algorithmicrepeat{\textbf{Répéter}}
+\algrenewcommand\algorithmicuntil{\textbf{Jusqu'à}}
+\algrenewcommand\algorithmicprocedure{\textbf{Procédure}}
+\algrenewcommand\algorithmicfunction{\textbf{Fonction}}
+\algrenewcommand\algorithmicif{\textbf{Si}}
+\algrenewcommand\algorithmicthen{\textbf{alors}}
+\algrenewcommand\algorithmicelse{\textbf{Sinon}}
+\algrenewcommand\algorithmicrequire{\textbf{Entrée:}}
+\algrenewcommand\algorithmicensure{\textbf{Sortie:}}
+\algrenewcommand\algorithmicreturn{\textbf{Retourner}}
+\algrenewcommand\textproc{\textsc}
+% Define new commands to begin and end an algorithm
+\algnewcommand\algorithmicbegin{\textbf{Début}}
+\algnewcommand\Begin{\item[\algorithmicbegin]}
+\algnewcommand\algorithmicendbegin{\textbf{Fin}}
+\algnewcommand\EndBegin{\item[\algorithmicendbegin]}
+
+%% Hyperlinks for references (must be the last package loaded)
+\usepackage[pdftex,%
+  colorlinks,%
+  linkcolor=colHyperlinks,%
+  urlcolor=colHyperlinks,%
+  citecolor=colHyperlinks,
+  plainpages=false]{hyperref}
+\begin{document}
+
+\begin{center}
+\Large{Licence L2\\Mathématiques pour l'informatique \\Correction d'exercices du TD 2}
+\end{center}
+
+\section*{Exercice 13}
+
+On considère $A = \mathbb{N}$ muni d'une relation d'ordre $|$
+
+\begin{minipage}{0.5\textwidth}
+	a) Soit $B = \{1, 2, 3\}$
+
+	\begin{itemize}
+		\item Ensemble des maximaux : $\{2, 3\}$
+		\item $\text{max}(B)$ n'existe pas
+		\item Ensemble des minimaux : $\{1\}$
+		\item $\text{min}(B) = 1$
+		\item Ensemble des majorants : $\{6\mathbb{N}\}$
+		\item $\text{sup}(B) = 6$
+		\item Ensemble des minorants : $\{1\}$
+		\item $\text{inf}(B) = 1$
+	\end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	b) Soit $B = \{0, 2, 4, 8\}$
+
+	\begin{itemize}
+		\item Ensemble des maximaux : $\{0\}$
+		\item $\text{max}(B) = 0$
+		\item Ensemble des minimaux : $\{2\}$
+		\item $\text{min}(B) = 2$
+		\item Ensemble des majorants : $\{0\}$
+		\item $\text{sup}(B) = 0$
+		\item Ensemble des minorants : $\{1, 2\}$
+		\item $\text{inf}(B) = 2$
+	\end{itemize}
+\end{minipage}
+
+\begin{minipage}{0.5\textwidth}
+	c) Soit $B = \{4, 6, 8\}$
+
+	\begin{itemize}
+		\item Ensemble des maximaux : $\{6, 8\}$
+		\item $\text{max}(B)$ n'existe pas.
+		\item Ensemble des minimaux : $\{4, 6\}$
+		\item $\text{min}(B)$ n'existe pas.
+		\item Ensemble des majorants : $\{24\mathbb{N}\}$
+		\item $\text{sup}(B) = 24$
+		\item Ensemble des minorants : $\{1, 2\}$
+		\item $\text{inf}(B) = 2$
+	\end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	d) Soit $B = \{7\}$
+
+	\begin{itemize}
+		\item Ensemble des maximaux : $\{7\}$
+		\item $\text{max}(B) = 7$.
+		\item Ensemble des minimaux : $\{7\}$
+		\item $\text{min}(B) = 7$.
+		\item Ensemble des majorants : $\{7\mathbb{N}\}$
+		\item $\text{sup}(B) = 7$
+		\item Ensemble des minorants : $\{1, 7\}$
+		\item $\text{inf}(B) = 7$
+	\end{itemize}
+\end{minipage}
+
+e) Soit $B = \{3\mathbb{N}\}$
+
+\begin{itemize}
+	\item Ensemble des maximaux = Ensemble des majorants = $\{0\}$
+	\item $\text{max}(B) = \text{sup}(B) = 0$
+	\item Ensemble des minimaux : $\{3\}$
+	\item $\text{min}(B) = 3$.
+	\item Ensemble des minorants : $\{1, 3\}$
+	\item $\text{inf}(B) = 3$
+\end{itemize}
+
+\newpage
+
+\section*{Exercice 15}
+
+\begin{algorithm}
+	\caption{maximal(n, M, B, i) de type booléen}
+	\begin{algorithmic}[1]
+\Require 
+
+	$n$ : card$(A)$
+
+	$M$ : matrice booléenne associée à  la relation d'ordre d'indice [0...n-1][0...n-1]
+
+	$B$ : tableau caractéristique de $B\subset A$ d'indice [0...n-1]
+
+	$i$ : élément de $A$ à  tester
+\Ensure 
+
+	vrai si $i$ est un élément maximal de $B$
+
+\Begin
+	\If{ $B[i]$ }
+		\State $j \leftarrow 0$
+		\While{$j<i$ et (!$B[j]$ ou !M[i][j])} \Comment Voir ci-après
+			\State $j \leftarrow j + 1$
+		\EndWhile
+		\If{$j = 1$}
+			\State $j \leftarrow j + 1$
+			\While{$j<n$ et (!$B[j]$ ou !M[i][j])} \Comment Voir ci-après
+				\State $j \leftarrow j + 1$
+			\EndWhile
+			\State \Return $(j=n)$
+		\EndIf
+	\EndIf
+	\State \Return faux
+
+	\Comment Si on inverse les indices de la matrice afin d'avoir M[j][i], on obtient l'algorithme "minimal"
+\EndBegin
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{minimum(n, M, B, i) de type booléen}
+	\begin{algorithmic}[1]
+
+	\Require 
+
+	$n$ : card$(A)$
+
+	$M$ : matrice booléenne associée à  la relation d'ordre d'indice [0...n-1][0...n-1]
+
+	$B$ : tableau caractéristique de $B\subset A$ d'indice [0...n-1]
+
+	$i$ : élément de $A$ à  tester
+\Ensure 
+
+	vrai si $i$ est le minimum de $B$
+
+\Begin
+	\If{$B[i]$}
+		\State $j \leftarrow 0$
+		
+		\Comment Si on inverse les indices de la matrice afin d'avoir M[j][i], on obtient l'algorithme "maximum"
+		\While{$j<n$ et (!$B[j]$ ou M[i][j])}
+			\State $j \leftarrow j + 1$
+		\EndWhile
+		\State \Return $(j=n)$
+	\EndIf
+	\State \Return faux
+\EndBegin
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{major(n, M, B, i) de type booléen}
+	\begin{algorithmic}[1]
+
+	\Require 
+
+	$n$ : card$(A)$
+
+	$M$ : matrice booléenne associée à  la relation d'ordre d'indice [0...n-1][0...n-1]
+
+	$B$ : tableau caractéristique de $B\subset A$ d'indice [0...n-1]
+
+	$i$ : élément de $A$ à  tester
+\Ensure 
+
+	vrai si $i$ est un majorant de $B$
+
+\Begin
+	\If{$B[i]$}
+		\State test $\leftarrow$ vrai
+		\State $j \leftarrow 0$
+		
+		\While{$j<n$ et test}
+		
+			\Comment En inversant les indices de la matrice afin d'avoir M[i][j], on obtient l'algorithme "minorant"
+			\State test $\leftarrow$ B[j] $\leq$ M[j][i]
+			\State $j \leftarrow j + 1$
+		\EndWhile
+	\EndIf
+	\State \Return test
+\EndBegin
+	\end{algorithmic}
+\end{algorithm}
+
+\end{document}
