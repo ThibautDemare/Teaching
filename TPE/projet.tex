@@ -1,0 +1,44 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\setlength{\parskip}{10pt}
+
+%% Mandatory stuff
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{multicol}
+%% Math package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}% Define a particular math font
+
+
+% Improve itemize environment
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}% Delete useless space
+
+
+%% Hyperlinks for references (must be the last package loaded)
+\usepackage[pdftex,%
+  colorlinks,%
+  linkcolor=colHyperlinks,%
+  urlcolor=colHyperlinks,%
+  citecolor=colHyperlinks,
+  plainpages=false]{hyperref}
+\begin{document}
+
+\begin{center}
+\Large{Projet TPE\\2015-2016\\}
+\end{center}
+
+\section{Présentation du sujet}
+
+Le sujet consiste à développer sur NetLogo ou GAMA un modèle multi-agent qui simulerait le trafic routier sur un territoire. Les agents se déplaceront sur le réseau routier entre des zones d'habitation et des zones de travail en fonction de leurs horaires de travail. Les agents doivent respecter les vitesses sur chaque route, mais plus le trafic augmente sur une route, plus la vitesse sur celle-ci diminuera, pouvant conduire à des embouteillages.
+
+Le modèle pourra être couplé à d'autres modèles grâce au plugin gs-netlogo ou gs-gama permettant une connexion avec Graphstream.
+
+\end{document}
