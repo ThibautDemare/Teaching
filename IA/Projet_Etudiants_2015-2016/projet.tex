@@ -1,0 +1,57 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\setlength{\parskip}{10pt}
+
+%% Mandatory stuff
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{multicol}
+%% Math package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}% Define a particular math font
+
+
+% Improve itemize environment
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}% Delete useless space
+
+
+%% Hyperlinks for references (must be the last package loaded)
+\usepackage[pdftex,%
+  colorlinks,%
+  linkcolor=colHyperlinks,%
+  urlcolor=colHyperlinks,%
+  citecolor=colHyperlinks,
+  plainpages=false]{hyperref}
+\begin{document}
+
+\begin{center}
+\Large{I.A. Projet Master 1 M.I.\\2015-2016\\}
+À rendre le 10 Janvier 2016 sur Euréka
+\end{center}
+
+\section{Présentation du sujet}
+
+L'objectif de ce projet est de développer l'intelligence artificielle des personnages d'un jeu vidéo, type survival-horror, qui met en scène des zombies. On considère un environnement de jeu en deux dimensions représentant une ville infestée de zombies. Le joueur déplace donc son personnage à travers les routes, ponts, tunnels et égouts de la ville pour lui faire atteindre une zone sécurisée qui lui fait gagner la partie. Les zombies parsèment le territoire et cherchent à mordre le personnage, ce qui fait perdre la partie au joueur.
+
+\section{Travail à réaliser}
+
+Vous devrez développer, dans le langage de votre choix, ce jeu vidéo et plus particulièrement l'intelligence artificielle des zombies. Pour développer le comportement de ces monstres, vous devrez choisir parmi les algorithmes et méthodes vus en cours et en TP. Nous vous conseillons d'utiliser l'algorithme A* pour la recherche de chemins.
+
+Il est important de remarquer que vous ne serez pas notés sur l'interface du jeu, mais bien uniquement sur l'I.A. des zombies. Vous pourrez donc vous satisfaire d'une interface graphique très simple (voir d'une représentation textuelle en console) dans lequel, par exemple, le personnage et les zombies sont des points de couleurs, et les obstacles sont des formes géométriques. L'environnement pourra également être statique, discrétisé et généré manuellement. Néanmoins vous êtes libres de fournir un niveau d'élaboration plus élevé.
+
+Vous devrez fournir un programme avec ses sources et les moyens nécessaires pour le compiler et l'exécuter. Un rapport au format PDF (maximum 3 pages) vous est demandé, précisant la technique utilisée, la représentation du problème, la mise en \oe uvre, les résultats, les détails pratiques d'utilisation de votre programme, ainsi que toute précision que vous jugerez nécessaire.
+
+Vous devrez également faire une présentation orale qui détaillera les choix pris pour résoudre ce problème.
+
+\section{Pour aller plus loin}
+
+Vous êtes libre d'apporter votre propre contribution à ce jeu comme vous le souhaitez. Vous pouvez par exemple proposer plusieurs niveaux de difficulté (soit en augmentant le nombre de zombies et/ou en améliorant l'efficacité de l'intelligence artificielle), ou ajouter des contraintes ou des fonctionnalités supplémentaires à l'environnement, au personnage, ou aux zombies (par exemple en les faisant collaborer dans la mise en \oe uvre de stratégies avancées, comme de l'encerclement).
+
+\end{document}
