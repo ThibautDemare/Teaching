@@ -1,0 +1,85 @@
+\documentclass[a4paper,11pt]{article}
+
+
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\setlength{\parskip}{10pt}
+
+%% Mandatory stuff
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Math package
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}% Define a particular math font
+
+% In order to reduce the size after and before sections
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0.5pt}{0.5pt}
+
+%% Color package (for links, source code when using listings,...)
+\usepackage[usenames]{color}
+	%% Color for hyperlinks
+\definecolor{colHyperlinks}{RGB}{0,90,170}%{59,0,159}
+
+%% Hyperlinks for references (must be the last package loaded)
+\usepackage[pdftex,%
+  colorlinks,%
+  linkcolor=colHyperlinks,%
+  urlcolor=colHyperlinks,%
+  citecolor=colHyperlinks,
+  plainpages=false]{hyperref}
+\begin{document}
+
+\begin{center}
+\Large{Master Mathématiques et Informatique 1ère année\\Programmation Scientifique Orientée Objet\\Examen (3h)\\Pas de documents autorisés}
+\end{center}
+
+\section*{Exercice}
+
+L'objectif de cette exercice est de créer un ensemble de classes permettant de faire des calculs d'intégrales sur des fonctions. En vous appuyant sur le principe de réutilisabilité de la programmation objet vu en cours, vous devrez créer l'ensemble des classes et méthodes nécessaires à cet objectif et notamment :
+
+1) Une classe abstraite "Fonction" qui possède les attributs suivants:
+\begin{itemize}
+  \item deux réels "borneInf" et "borneSup" qui définissent les bornes de définition de la fonction.
+  \item deux booléens "estBorneInfStrict" et "estBorneSupStrict" qui indiquent, respectivement, si la borne inférieur et la borne supérieur sont des bornes strictes.
+\end{itemize}
+
+Et les méthodes suivantes :
+\begin{itemize}
+  \item une méthode abstraite "f(double x)" : elle a vocation à retourner la valeur de la fonction d'après une valeur x. Elle lève une BorneException si la valeur de x est en dehors de la borne de définition de la fonction.
+  \item une méthode publique "calculIntegral(double borneInf, double borneSup, MethodeIntegrale methode)" : retourne la valeur de l'intégrale entre la borneInf et la borneSup en utilisant la méthode de calcul passée en paramétre. Elle lève une BorneException si borneInf et/ou borneSup sont en dehors de la borne de définition de la fonction ou si borneInf > borneSup.
+  \item une méthode privée "calculMethodeRectangle(double borneInf, double borneSup)" : retourne la valeur de l'intégral entre borneInf et borneSup en effectuant le calcul grâce à la méthode des rectangles.
+  \item une méthode privée "calculMethodeTrapeze(double borneInf, double borneSup)" : retourne la valeur de l'intégral entre borneInf et borneSup en effectuant le calcul grâce à la méthode des trapèzes.
+\end{itemize}
+
+2) Une énumération "MethodeIntegrale" qui propose deux valeurs : une pour la méthode des rectangles, et une autre pour la méthode des trapèzes.
+
+3) Une classe "BorneException" qui permet de lever des exceptions lorsqu'un calcul risque d'être effectué en dehors des bornes de définition d'une fonction.
+  
+4) Une classe "FonctionRacineCarre" qui hérite de la classe mère "Fonction". Elle définit "f(double x)" tel que $f(x) = \sqrt{x}$.
+
+5) Une classe "Main" qui test l'ensemble des fonctionnalités.
+
+\section*{Annexe}
+
+\paragraph{Méthode des rectangles}
+La méthode des rectangles revient à une approximation de $f$ par une fonction en escalier. La valeur approchée $R$ de l'intégrale sur l'intervalle $[a,b]$, et en utilisant $n$ rectangles, vaut alors :
+$$R = \frac{b - a}{n} \sum_{i = 0}^{n - 1} f(x_i)$$
+
+avec $x_0 = a$ et $x_{n} = b$
+
+\paragraph{Méthode des trapèzes}
+Il s'agit du même principe que la méthode des rectangles mais on remplace ceux-ci par des trapèzes.
+On utilise une fonction continue affine par morceaux approchant la fonction à intégrer et égale à celle-ci sur les points de la subdivision en $n$ sous-intervalles égaux de l'intervalle d'intégration $[a,b]$ pour obtenir une approximation de la valeur de son intégrale sur $[a,b]$. La valeur approchée $R$ de l'intégrale sur l'intervalle $[a,b]$, et en utilisant $n$ trapèzes, vaut alors :
+
+$$R = \frac{b - a}{n} \left( \frac{f(a)+f(b)}{2} + \sum_{i=1}^{n-1} f(x_i) \right)$$
+
+avec $x_0 = a$ et $x_{n} = b$
+
+\paragraph{Racine carré}
+La classe java.lang.Math vous permet d'utiliser la méthode sqrt(double a) pour calculer la racine carré d'un nombre.
+
+\end{document}
